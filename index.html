@@ -1,18 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Site</title>
-    <!-- <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu</title>
+    <link href="index.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello-Bootstrap</h1>
-    <button class="button button2">Order</button>
+    <script>
+        function add_food(){
+            
+        }
+    </script>
+    <div class="main_container">
+        <div class="secondary_container">
+            <div class="logo_container">
+                <h1>แอปแบ้ว เมนู</h1>
+            </div>
+            <br>
+            <h2>A-la-cart</h2>
+            <div class="food_menu">
+                <img src="images\friedrice.png" alt="fried_rice">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Fried Rice</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+                
+            </div>
+            <div class="food_menu">
+                <img src="images\spaghetti.png" alt="spaghetti">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Spaghetti</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+            </div>
+            <div class="food_menu">
+                <img src="images\bbq.png" alt="bbq">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Pork BBQ</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+            </div>
+
+            <h2>Dessert</h2>
+            <div class="food_menu">
+                <img src="images\cake.png" alt="cake">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Caramel-Topped Ice Cream</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+            </div>
+            <div class="food_menu">
+                <img src="images\oreo_pots.jpg" alt="oreo">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Oreo Pots</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+            </div>
+
+            <h2>Drink</h2>
+            <div class="food_menu">
+                <img src="images\watermalon_juice.png" alt="watermalon_juice">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Watermalon Smoothy</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+            </div>
+            <div class="food_menu">
+                <img src="images\orange_juice.png" alt="orange_juice">
+                <div class="space"></div>
+                <div class="btn_container">
+                    <p>Orange Juice</p>
+                    <br>
+                    <button class="add_button">+</button>
+                    <!-- <button class="del_button">-</button> -->
+                </div>
+            </div>
+            
+            <div class="purchase">
+                <button class="purchase_btn" onclick="document.location='order.html'">Make a purchase</button>
+            </div>
+        </div>
+    </div>
   </body>
 </html>
