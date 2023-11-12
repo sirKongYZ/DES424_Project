@@ -1,0 +1,136 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.secondary_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+
+    background-color: rgb(231, 229, 229);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.secondary_container h2 {
+    margin-left: 15px;
+
+    font-size: 25px;
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.logo_container {
+    background-color: rgb(219, 82, 58);
+    border-radius: 15px;
+}
+
+.logo_container h1 {
+    font-family: 'Itim', cursive;
+    font-size: 50px;
+
+}
+
+.food_menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    
+}
+
+.food_menu img {
+    border-radius: 180px;
+
+    width: 150px;
+    height: 150px;
+}
+
+.food_menu p {
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn_container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.add_button {
+    width: 35px;
+    height: 35px;
+    border: 1px solid green;
+    border-radius: 45px;
+
+    font-size: 30px;
+
+    transition: .2s;
+
+}
+
+.add_button:hover {
+    border-radius: 8px;
+    background-color: green;
+}
+
+.add_button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
+
+.del_button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid red;
+    border-radius: 45px;
+
+    font-size: 30px;
+}
+
+.space {
+    margin-right: 30px;
+}
+
+.purchase {
+    align-self: center;
+    margin: 10px;
+}
+
+.purchase button {
+    width: 180px;
+    height: 40px;
+
+    font-size: 18px;
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    background-color: rgb(54, 167, 54);
+    border: 1.5px solid #000;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.purchase_btn:active {
+    background-color: #ffffff;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+
