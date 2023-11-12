@@ -8,8 +8,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100dvh;
     width: 100%;
+
+    background-color: rgb(211, 201, 201);
 }
 
 .secondary_container {
@@ -19,19 +21,31 @@
     align-items: flex-start;
     width: 50%;
 
+    translate: 0px -50%;
+
     background-color: rgb(231, 229, 229);
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
+    border: 2px solid #000;
+
+    padding: 10px;
 }
 
 .logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     background-color: rgb(219, 82, 58);
     border-radius: 15px;
+
+    height: 30%;
+    width: 55%;
 }
 
 .logo_container h1 {
     font-family: 'Itim', cursive;
     font-size: 50px;
+
 
 }
 
@@ -42,8 +56,33 @@
     border-radius: 15px;
 }
 
+.showfood {
+    background-color: rgb(180, 176, 176);
+    border-radius: 15px;
 
+    padding: 10px;
 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.showfood img {
+    border-radius: 180px;
+
+    width: 80px;
+    height: 80px;
+
+    margin-right: 10px;
+}
+
+.showfood p {
+    margin-right: 10px;
+
+    font-family: 'Itim', cursive;;
+    font-size: 20px;
+    font-weight: 500;
+}
 
 .confirm_btn {
     align-self: self-end;

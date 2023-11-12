@@ -12,12 +12,70 @@
   <body>
     <script>
         let total_food = 0;
-        function add_food(){
+        let food_dish = [];
+
+        function add_friedrice(){
+            food_dish.push("friedrice")
             total_food += 1;
-            localStorage.setItem('num_food', total_food);
-            console.log(localStorage);  
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
+        }
+
+        function add_spaghetti(){
+            food_dish.push("spaghetti")
+            total_food += 1;
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
+        }
+
+        function add_bbq(){
+            food_dish.push("bbq")
+            total_food += 1;
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
         }
         
+        function add_cake(){
+            food_dish.push("cake")
+            total_food += 1;
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
+        }
+        
+        function add_oreo_pots(){
+            food_dish.push("oreo")
+            total_food += 1;
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
+        }
+        
+        function add_watermalon_juice(){
+            food_dish.push("watermalon")
+            total_food += 1;
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
+        }
+        
+        function add_orange_juice(){
+            food_dish.push("orange")
+            total_food += 1;
+            localStorage.setItem('food_type', food_dish);
+            localStorage.setItem('all_food', total_food);
+            console.log(food_dish)
+            console.log(localStorage)
+        }
         
     </script>
 
@@ -34,7 +92,7 @@
                 <div class="btn_container">
                     <p>Fried Rice</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_friedrice()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
                 
@@ -45,7 +103,7 @@
                 <div class="btn_container">
                     <p>Spaghetti</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_spaghetti()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -55,7 +113,7 @@
                 <div class="btn_container">
                     <p>Pork BBQ</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_bbq()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -67,7 +125,7 @@
                 <div class="btn_container">
                     <p>Caramel-Topped Ice Cream</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_cake()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -77,7 +135,7 @@
                 <div class="btn_container">
                     <p>Oreo Pots</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_oreo_pots()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -89,7 +147,7 @@
                 <div class="btn_container">
                     <p>Watermalon Smoothy</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_watermalon_juice()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -99,13 +157,13 @@
                 <div class="btn_container">
                     <p>Orange Juice</p>
                     <br>
-                    <button class="add_button" onclick="add_food()">+</button>
+                    <button class="add_button" onclick="add_orange_juice()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
             
             <div class="purchase">
-                <button class="purchase_btn" onclick="document.location='order.html'">Make a purchase</button>
+                <button class="purchase_btn" onclick="document.location='order.html'">Order</button>
             </div>
         </div>
     </div>

@@ -11,12 +11,15 @@
   </head>
   <body>
     <script>
-      const total_food = localStorage.getItem('num_food');
-      alert(total_food)
-
+      const show_food = localStorage.getItem('food_type');
+      const num_food = localStorage.getItem('all_food');
+  
       function confirm_order(){
-
+        alert("Your order has been sent to our kitchens! Press ok to go back to The menu");
+        localStorage.clear();
+        document.location='index.html';
       }
+
     </script>
 
     <div class="main_container">
@@ -24,19 +27,65 @@
             <div class="logo_container">
                 <h1>Comfirm Order</h1>
             </div>
+
             <div class="main_content">
-                                
-
+              <h3>Your order:</h3>
+              <br>
+              <div class="showfood" id="showfood">
+                <img id="food_pic" src="images\logo.png">
+                <p id="food_name">Fried Rice</p>
+                <p id="quantity">Quantities: </p>
+              </div>
             </div>
-
 
             <div class="confirm_btn">
-                <button onclick="confirm_order()">Comfirm</button>
-
+                <button onclick="confirm_order()">Comfirm Order</button>
             </div>
-        
         </div>
-        
     </div>
+
+  <script>
+    if(show_food[0] == "f"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Fried Rice";
+    }
+    
+    else if(show_food[0] == "s"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Spaghetti";
+    }
+    
+    else if(show_food[0] == "b"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Pork BBQ";
+    }
+    
+    else if(show_food[0] == "c"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Caramel-Topped Ice Cream";
+    }
+    
+    else if(show_food[0] == "o" && show_food[2] == "e"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Oreo Pots";
+    }
+    
+    else if(show_food[0] == "w"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Watermalon Smoothy";
+    }
+    
+    else if(show_food[0] == "o" && show_food[2] == "a"){
+      let change_food = document.getElementById('food_name');
+      change_food.innerHTML = "Orange Juice";
+    }
+    
+    if(num_food){
+      let total_order = document.getElementById('quantity');
+      total_order.innerHTML = "Quantities: " + num_food;
+    }
+    
+    </script>
   </body>
+  
 </html>
