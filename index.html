@@ -11,10 +11,16 @@
   </head>
   <body>
     <script>
+        let total_food = 0;
         function add_food(){
-            
+            total_food += 1;
+            localStorage.setItem('num_food', total_food);
+            console.log(localStorage);  
         }
+        
+        
     </script>
+
     <div class="main_container">
         <div class="secondary_container">
             <div class="logo_container">
@@ -28,7 +34,7 @@
                 <div class="btn_container">
                     <p>Fried Rice</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
                 
@@ -39,7 +45,7 @@
                 <div class="btn_container">
                     <p>Spaghetti</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -49,7 +55,7 @@
                 <div class="btn_container">
                     <p>Pork BBQ</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -61,7 +67,7 @@
                 <div class="btn_container">
                     <p>Caramel-Topped Ice Cream</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -71,7 +77,7 @@
                 <div class="btn_container">
                     <p>Oreo Pots</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -83,7 +89,7 @@
                 <div class="btn_container">
                     <p>Watermalon Smoothy</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
@@ -93,7 +99,7 @@
                 <div class="btn_container">
                     <p>Orange Juice</p>
                     <br>
-                    <button class="add_button">+</button>
+                    <button class="add_button" onclick="add_food()">+</button>
                     <!-- <button class="del_button">-</button> -->
                 </div>
             </div>
