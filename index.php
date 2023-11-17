@@ -1,21 +1,38 @@
-<?php
-// Database connection parameters
-$host = 'fooddb.cdgwjbduasis.us-east-1.rds.amazonaws.com'; // e.g., localhost
-$port = '5432'; // Default PostgreSQL port
-$dbname = 'mydb';
-$user = 'postgres';
-$password = 'password';
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display JSON Data</title>
+  </head>
+  <body>
+    <h1>JSON Data from Lambda Function</h1>
+    <pre id="json-container"></pre>
+    <!-- Container for JSON data -->
 
-// Establish a connection to the PostgreSQL database
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+    <script>
+      // Function to fetch JSON data from the Lambda function
+      async function fetchData() {
+        try {
+          const response = await fetch(
+            "https://jv5md3e0wj.execute-api.us-east-1.amazonaws.com/redisStage/redis"
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
-// Check if the connection was successful
-if (!$conn) {
-    die("Connection failed: " . pg_last_error());
-}
+          const jsonData = await response.json();
+          const jsonContainer = document.getElementById("json-container");
 
-// Perform database operations here...
+          // Display the JSON data in a preformatted block
+          jsonContainer.textContent = JSON.stringify(jsonData, null, 2);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
 
-// Close the database connection
-pg_close($conn);
-?>
+      // Call the fetchData function when the page loads
+      window.onload = fetchData;
+    </script>
+  </body>
+</html>
