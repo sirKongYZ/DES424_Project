@@ -1,38 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Display JSON Data</title>
+    <title>Employee ID</title>
   </head>
   <body>
-    <h1>JSON Data from Lambda Function</h1>
-    <pre id="json-container"></pre>
-    <!-- Container for JSON data -->
+    <h4>กด submit แล้ว refresh แล้วอย่าไปสนใจ error เหมือนที่เธอไม่สนใจเรา</h4>
+    <h1>Invoke Lambda Function</h1>
+    <form id="employeeForm">
+      <label for="employeeId">Employee ID:</label>
+      <input type="text" id="employeeId" name="employeeId"><br><br>
 
-    <script>
-      // Function to fetch JSON data from the Lambda function
-      async function fetchData() {
-        try {
-          const response = await fetch(
-            "https://jv5md3e0wj.execute-api.us-east-1.amazonaws.com/redisStage/redis"
-          );
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName"><br><br>
 
-          const jsonData = await response.json();
-          const jsonContainer = document.getElementById("json-container");
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName"><br><br>
 
-          // Display the JSON data in a preformatted block
-          jsonContainer.textContent = JSON.stringify(jsonData, null, 2);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }
+      <button type="submit">Submit</button>
+    
+    </form>
+    <p id="result"></p>
+    
 
-      // Call the fetchData function when the page loads
-      window.onload = fetchData;
-    </script>
+    <h1>Employee Info:</h1>
+    <div id="JSONContainer"></div>
+
+    <h1>List of Employees</h1>
+    <ul id="employeeList"></ul>
+    <button id="invokeButton">Delete All Records</button>
+    <p id="delete"></p>
+    
+    
+    <script src = "script.js"></script>
   </body>
 </html>
