@@ -247,8 +247,8 @@ function updateDateTime() {
 }
 
 // Call the function to update the date and time immediately when the page loads
-updateDateTime();
+//updateDateTime();
 
 // Update the date and time every second (1000 milliseconds)
-setInterval(updateDateTime, 1000);
+//setInterval(updateDateTime, 1000);
 initApp();
