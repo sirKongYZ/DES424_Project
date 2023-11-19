@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eaeaea;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 50px;
+}
+
+.container text {
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+}
+
+.logo_text {
+
+}
+
+.table {
+  border-collapse: collapse;
+  padding: 2px;
+}
+
+.table, th {
+  border: 2.5px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #fff;
+}
+
+.table, td {
+  border: 2.5px solid black;
+  border-collapse: collapse;
+  text-align: end;
+  width: 120px;
+  padding-right: 5px;
+  background-color: #fff;
+}
