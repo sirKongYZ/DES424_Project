@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebSocket Client</title>
+  <title>WebSocket Receiver</title>
 </head>
 <body>
-  <h1>WebSocket Client</h1>
-  <textarea id="messageInput" placeholder="Enter JSON"></textarea>
-  <button onclick="sendMessage()">Send JSON</button>
+  <h1>WebSocket Receiver</h1>
+  <div id="receivedData"></div>
 
   <script>
     const socket = new WebSocket('ws://localhost:8080');
@@ -21,6 +20,10 @@
       try {
         const receivedData = JSON.parse(event.data);
         console.log('Received JSON data from server:', receivedData);
+
+        // Display the received data in the HTML
+        const receivedDataDiv = document.getElementById('receivedData');
+        receivedDataDiv.innerHTML = `<p>Received JSON data: ${JSON.stringify(receivedData)}</p>`;
       } catch (error) {
         console.error('Error parsing JSON:', error);
       }
@@ -29,18 +32,6 @@
     socket.addEventListener('close', (event) => {
       console.log('Connection closed');
     });
-
-    function sendMessage() {
-      const messageInput = document.getElementById('messageInput');
-      try {
-        const jsonData = JSON.parse(messageInput.value);
-        socket.send(JSON.stringify(jsonData));
-        console.log('Sent JSON data:', jsonData);
-      } catch (error) {
-        console.error('Invalid JSON:', error);
-      }
-      messageInput.value = '';
-    }
   </script>
 </body>
 </html>
