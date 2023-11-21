@@ -37,9 +37,11 @@ header{
 }
 .title{
   font-size: xx-large;
+  
 }
 .listProduct .item1 img{
-  width: 90%;
+  width: 95%;
+  height: 50%;
 }
 .listProduct{
   display: none;
@@ -67,16 +69,16 @@ header{
   font-size: large;
 }
 .listProduct .item1 .price{
-  letter-spacing: 7px;
-  font-size: small;
+  letter-spacing: 5px;
+  font-size: large;
 }
 .listProduct .item1 button{
   background-color: #353432;
   color: #eee;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px;
   margin-top: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 868px) {
@@ -175,6 +177,8 @@ body.showCart .container{
 .navbar {
   background-color: #333;
   overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 15px;
 }
 
 /* Style the links inside the navigation bar */
@@ -209,6 +213,35 @@ body.showCart .container{
 .item1.pop-up {
   opacity: 1;
   transform: translateY(0);
+}
+
+
+
+
+
+.table-selection-label {
+  margin-right: 8px;
+  font-size: 25px;
+}
+
+.table-selection-select {
+  margin-right: 8px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px 5px;
+}
+
+.clearLocal {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+ 
+ 
 }
 
 table, tr, td {

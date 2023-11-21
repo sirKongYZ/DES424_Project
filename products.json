@@ -1,67 +1,67 @@
 [
     {
         "id": 1,
-        "name":" Food1",
+        "name":" Kebab",
         "price": 200,
         "image": "image/1.png",
-        "type": "dessert"
-    },
-    {
-        "id": 2,
-        "name":" Food2",
-        "price": 250,
-        "image": "image/2.png",
         "type": "food"
     },
     {
+        "id": 2,
+        "name":" Cheese cake",
+        "price": 250,
+        "image": "image/2.png",
+        "type": "dessert"
+    },
+    {
         "id": 3,
-        "name":" Food3",
+        "name":" Fired rice",
         "price": 290,
         "image": "image/3.png",
         "type": "food"
     },
     {
         "id": 4,
-        "name":" Food4",
+        "name":" Sushi",
         "price": 200,
         "image": "image/4.png",
-        "type": "dessert"
+        "type": "food"
     },
     {
         "id": 5,
-        "name":" Food5",
+        "name":" Orange juice",
         "price": 300,
         "image": "image/5.png",
-        "type": "food"
+        "type": "drink"
         
     },
     {
         "id": 6,
-        "name":" Food6",
+        "name":" Oreo Ice cream",
         "price": 200,
         "image": "image/6.png",
         "type": "dessert"
     },
     {
         "id": 7,
-        "name":" Food7",
+        "name":" Spaghetti",
         "price": 200,
         "image": "image/7.png",
-        "type": "dessert"
+        "type": "food"
     },
     {
         "id": 8,
-        "name":" Food8",
-        "price": 200,
-        "image": "image/8.png",
-        "type": "food"
-    }
-    ,{
-        "id": 9,
-        "name":" Food9",
+        "name":" Strawberry juice",
         "price": 200,
         "image": "image/8.png",
         "type": "drink"
+    }
+    ,{
+        "id": 9,
+        "name":" Mama noodles",
+        "price": 200,
+        "image": "image/9.png",
+        "type": "food"
     }
 
 ]
