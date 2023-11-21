@@ -1,3 +1,5 @@
+
+
 var data = [{
     "user_data": [{
       "amount": 2550,
@@ -45,7 +47,7 @@ var data = [{
       },
       {
         "name": "Food4",
-        "type": "dessert",
+        "type": "food",
         "quantity": 1,
         "product_id": "4"
       }
@@ -68,18 +70,7 @@ var data = [{
     }]}
   ];
   
-  var tableStr = '';
-  data2.forEach((obj) => {
-      var userData = obj.jsondata;
-      var total = 0;
-      userData.forEach((o, index) => {
-        tableStr += '<tr>' + (index == 0 ? '<td rowspan="' + userData.length + '">' + obj.transaction_id + '</td>' : '')+ (index == 0 ? '<td rowspan="' + userData.length + '">' + obj.table_id + '</td>' : '') + '<td>'+obj.time+'</td><td>'+o.name+'</td><td>'+o.quantity+'</td></tr>';
-         total += o.amount;
-     });
-     tableStr += '<tr><td colspan="4">Total</td><td>' + total + '</td></tr>';
-     tableStr += `<tr><td colspan="5"><button value = ${obj.transaction_id} = >Check</button></td>`;
-  });
-  $('#user tbody').html(tableStr);
+  
 
 
 function generateUniqueId() {
@@ -103,3 +94,118 @@ function generateUniqueId() {
   
   const uniqueId = generateUniqueId();
   console.log(uniqueId);
+
+  const data3 = {
+    "transaction_id": 104,
+    "table_id": "2",
+    "time": "2023-11-21T11:55:30.000Z",
+    "jsondata": [
+      {
+        "name": " Food1",
+        "type": "dessert",
+        "quantity": 1,
+        "product_id": "2"
+      },
+      {
+        "name": " Food2",
+        "type": "food",
+        "quantity": 1,
+        "product_id": "3"
+      },
+      {
+        "name": " Food3",
+        "type": "food",
+        "quantity": 1,
+        "product_id": "4",
+      }
+    ],
+    "order_id": "IS28780480"
+  };
+  
+const dessertItems = data3.jsondata.filter((item) => item.type === "dessert");
+const foodItems = data3.jsondata.filter((item) => item.type === "food");
+
+// Extract "name" properties into separate arrays
+const dessertNames = dessertItems.map((item) => item.name);
+const foodNames = foodItems.map((item) => item.name);
+
+console.log("Dessert Names:");
+console.log(dessertNames);
+
+console.log("Food Names:");
+console.log(foodNames);
+
+for (let i = 0; i < foodNames.length; i++) {
+  const name = foodNames[i];
+  console.log(name);
+  // Perform your operation on 'name' here
+}
+
+var tableStr = '';
+data2.forEach((obj) => {
+  var userData = obj.jsondata;
+  var dataLength = 0; // Corrected variable name and moved outside the loop
+
+  userData.forEach((o, index) => {
+    const type = o.type;
+    if (type == "dessert") {
+      if (index === 0) {
+        // Only add these cells for the first dessert item in userData
+        tableStr += '<tr>' +
+          '<td rowspan="' + userData.length + '">' + obj.transaction_id + '</td>' +
+          '<td rowspan="' + userData.length + '">' + obj.table_id + '</td>';
+      }
+      tableStr += '<td>' + o.name + '</td>' +
+        '<td>' + o.quantity + '</td>';
+
+      if (index === 0) {
+        // Only add this cell for the first dessert item in userData
+        tableStr += '<td rowspan="' + userData.length + '">' + obj.time + '</td>';
+      }
+
+      tableStr += '</tr>';
+      dataLength += 1;
+    }
+  });
+
+  // Add a button row for each 'obj' in data2
+  tableStr += `<tr><td colspan="6"><button class="float-right mycheck" value="${obj.transaction_id}">Check</button></td></tr>`;
+});
+
+$('#user tbody').html(tableStr);
+
+function mergeRows(data, columnName) {
+    let mergedData = [];
+    let seenValues = new Set();
+
+    data.forEach(row => {
+        if (!seenValues.has(row[columnName])) {
+            seenValues.add(row[columnName]);
+            let mergedRow = {...row};
+
+            // Find and merge rows with the same value
+            data.forEach(innerRow => {
+                if (innerRow[columnName] === row[columnName] && innerRow !== row) {
+                    // Merge logic goes here
+                    // For example, summing up a certain field:
+                }
+            });
+
+            mergedData.push(mergedRow);
+        }
+    });
+
+    return mergedData;
+}
+
+// Example usage:
+let data5 = [
+    { id: 1, name: "Apple", quantity: 10 },
+    { id: 2, name: "Banana", quantity: 5 },
+    { id: 3, name: "Apple", quantity: 3 }
+];
+
+console.log(mergeRows(data5, "name"));
+
+
+

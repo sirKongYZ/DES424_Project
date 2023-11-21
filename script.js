@@ -63,21 +63,26 @@ const addToCart = (product_id) => {
     console.log(localStorage.getItem('selectedOption'));
     if(localStorage.getItem('selectedOption') != null && localStorage.getItem('selectedOption') != "none"){
         let positionThisProductInCart = cart.findIndex((value) => value.product_id == product_id);
-        
+        let table_id = parseInt(localStorage.getItem('selectedOption'));
         if(cart.length <= 0){
             cart = [{
-                "table_id" : localStorage.getItem('selectedOption'),
+                "table_id" : table_id,
                 product_id: product_id,
                 "name": getProductName(product_id),
-                quantity: 1
+                quantity: 1,
+                "type": getType(product_id)
             }];
+            localStorage.setItem('type', getType(product_id));
+            console.log(localStorage.getItem('type'));
         }else if(positionThisProductInCart < 0){
             cart.push({
-                "table_id" : localStorage.getItem('selectedOption'),
+                "table_id" : table_id,
                 product_id: product_id,
                 "name": getProductName(product_id),
-                quantity: 1
+                quantity: 1,
+                "type": getType(product_id)
             });
+            localStorage.setItem('type', getType(product_id));
         }
         else{
             cart[positionThisProductInCart].quantity = cart[positionThisProductInCart].quantity +1 ;
@@ -228,19 +233,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 checkoutCart.addEventListener('click', (event) => {
     console.log(localStorage.getItem('cart'));
-
     console.log("checkoutCart event triggered");
-    const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/postOrder/redis";
+    const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/clearData/redis";
 
     // Create a JSON object with the user input
 
+    const str = localStorage.getItem('selectedOption');
+    const intValue = Number(str);
     // Make a POST request to the Lambda function
+    //console.log(JSON.stringify(data));
+    console.log(localStorage.getItem('cart'));
     fetch(lambdaUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: (localStorage.getItem('cart')),
+        body: localStorage.getItem('cart'),
     })
     .then(response => response.json())
     .then(responseData => {
@@ -255,6 +263,7 @@ checkoutCart.addEventListener('click', (event) => {
     localStorage.clear();
     alert("Order has been sent");
     setTimeout(location.reload.bind(location), 1000);
+
     
     
 })
@@ -298,7 +307,10 @@ function updateDateTime() {
     datetimeElement.textContent = datetimeString;
 }
 
-
+const getType = (product_id) => {
+    const product = products.find((item) => item.id == product_id);
+    return product ? product.type : '';
+};
 
 // Call the function to update the date and time immediately when the page loads
 //updateDateTime();
