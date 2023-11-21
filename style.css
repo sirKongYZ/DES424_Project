@@ -220,26 +220,20 @@ body.showCart .container{
 
 
 .table-selection-label {
-  margin-right: 8px;
-  font-size: 25px;
+ 
+  font-size: 20px;
 }
 
 .table-selection-select {
-  margin-right: 8px;
-  font-size: 18px;
   border-radius: 5px;
-  text-align: center;
-  padding: 2px 5px;
+  
 }
 
 .clearLocal {
   background-color: #007bff;
   color: #ffffff;
-  border: none;
-  padding: 7px 10px;
-  cursor: pointer;
-  font-size: 18px;
   border-radius: 5px;
+  text-align: center;
  
  
 }
