@@ -83,7 +83,7 @@ ${Expect5}  $500
 17.Close cart list
     Click Element   xpath:/html/body/div[2]/div[2]/button[1]
 
-18.Reopen cart list 
+18.Reopen cart list
     Click Element   xpath:/html/body/div[1]/header/div[2]
 
 19.Check out 
