@@ -210,3 +210,7 @@ body.showCart .container{
   opacity: 1;
   transform: translateY(0);
 }
+
+table, tr, td {
+  border: solid 1px black;
+}

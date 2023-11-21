@@ -70,7 +70,8 @@ const addToCart = (product_id) => {
                 product_id: product_id,
                 "name": getProductName(product_id),
                 quantity: 1,
-                "type": getType(product_id)
+                "type": getType(product_id),
+                "price" : getPrice(product_id)
             }];
             localStorage.setItem('type', getType(product_id));
             console.log(localStorage.getItem('type'));
@@ -80,7 +81,8 @@ const addToCart = (product_id) => {
                 product_id: product_id,
                 "name": getProductName(product_id),
                 quantity: 1,
-                "type": getType(product_id)
+                "type": getType(product_id),
+                "price" : getPrice(product_id)
             });
             localStorage.setItem('type', getType(product_id));
         }
@@ -262,7 +264,7 @@ checkoutCart.addEventListener('click', (event) => {
     });
     localStorage.clear();
     alert("Order has been sent");
-    setTimeout(location.reload.bind(location), 1000);
+    //setTimeout(location.reload.bind(location), 1000);
 
     
     
@@ -285,10 +287,7 @@ const initApp = () => {
         }
     })
 }
-const getProductName = (product_id) => {
-    const product = products.find((item) => item.id == product_id);
-    return product ? product.name : '';
-};
+
 
 function updateDateTime() {
     const now = new Date();
@@ -306,6 +305,16 @@ function updateDateTime() {
     const datetimeElement = document.getElementById('datetime');
     datetimeElement.textContent = datetimeString;
 }
+
+const getProductName = (product_id) => {
+    const product = products.find((item) => item.id == product_id);
+    return product ? product.name : '';
+};
+
+const getPrice = (product_id) => {
+    const product = products.find((item) => item.id == product_id);
+    return product ? product.price : '';
+};
 
 const getType = (product_id) => {
     const product = products.find((item) => item.id == product_id);

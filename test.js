@@ -1,6 +1,6 @@
 
 
-var data = [{
+var data500 = [{
     "user_data": [{
       "amount": 2550,
       "time1": "2017/04/05",
@@ -140,72 +140,126 @@ for (let i = 0; i < foodNames.length; i++) {
   console.log(name);
   // Perform your operation on 'name' here
 }
+async function fetchDataDrink() {
+    const data = await fetch('https://jv5md3e0wj.execute-api.us-east-1.amazonaws.com/redisStage/redis');
+    const records = await data.json();
 
-var tableStr = '';
-data2.forEach((obj) => {
-  var userData = obj.jsondata;
-  var dataLength = 0; // Corrected variable name and moved outside the loop
-
-  userData.forEach((o, index) => {
-    const type = o.type;
-    if (type == "dessert") {
-      if (index === 0) {
-        // Only add these cells for the first dessert item in userData
-        tableStr += '<tr>' +
-          '<td rowspan="' + userData.length + '">' + obj.transaction_id + '</td>' +
-          '<td rowspan="' + userData.length + '">' + obj.table_id + '</td>';
-      }
-      tableStr += '<td>' + o.name + '</td>' +
-        '<td>' + o.quantity + '</td>';
-
-      if (index === 0) {
-        // Only add this cell for the first dessert item in userData
-        tableStr += '<td rowspan="' + userData.length + '">' + obj.time + '</td>';
-      }
-
-      tableStr += '</tr>';
-      dataLength += 1;
+    console.log("fetched");
+    let tab = '';
+    records.body.forEach(function(body) {
+    var total = 0;
+    if(body.status == "completed"){
+        tab += `<tr>
+        <td>${body.order_id}</td>
+        <td>${body.table_id}</td>
+        <td>${body.name}</td>
+        <td>${body.quantity}</td>
+        <td>${body.time}</td>
+        <td>${body.price}</td>
+        <td><input type="checkbox" id="vehicle1" name="settings" value= ${body.transaction_id}></td>`
+        document.getElementById('totalSum').textContent = setupCheckboxes();
+        
     }
-  });
+    })
+    setupCheckboxes();
+    document.getElementById('tbody').innerHTML = tab;
+    console.log("total: " + setupCheckboxes());
+    
+    
 
-  // Add a button row for each 'obj' in data2
-  tableStr += `<tr><td colspan="6"><button class="float-right mycheck" value="${obj.transaction_id}">Check</button></td></tr>`;
-});
-
-$('#user tbody').html(tableStr);
-
-function mergeRows(data, columnName) {
-    let mergedData = [];
-    let seenValues = new Set();
-
-    data.forEach(row => {
-        if (!seenValues.has(row[columnName])) {
-            seenValues.add(row[columnName]);
-            let mergedRow = {...row};
-
-            // Find and merge rows with the same value
-            data.forEach(innerRow => {
-                if (innerRow[columnName] === row[columnName] && innerRow !== row) {
-                    // Merge logic goes here
-                    // For example, summing up a certain field:
-                }
-            });
-
-            mergedData.push(mergedRow);
-        }
-    });
-
-    return mergedData;
+ 
 }
 
-// Example usage:
-let data5 = [
-    { id: 1, name: "Apple", quantity: 10 },
-    { id: 2, name: "Banana", quantity: 5 },
-    { id: 3, name: "Apple", quantity: 3 }
-];
+const table = document.querySelector('table');
 
-console.log(mergeRows(data5, "name"));
+let headerCell = null;
 
+for (let row of table.rows) {
+const firstCell = row.cells[0];
+
+if (headerCell === null || firstCell.innerText !== headerCell.innerText) {
+    headerCell = firstCell;
+} else {
+    headerCell.rowSpan++;
+    firstCell.remove();
+}
+}
+/*function setupCheckboxes() {
+    var checkboxes = document.querySelectorAll("input[type=checkbox][name=settings]");
+    let enabledSettings = []
+    let totalSum = 0;
+    // Use Array.forEach to add an event listener to each checkbox.
+    checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        console.log("checkbox triggered");
+        enabledSettings = 
+        Array.from(checkboxes) // Convert checkboxes to an array to use filter and map.
+        .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+        .map(i => i.value) // Use Array.map to extract only the checkbox values from the array of objects.
+        
+        console.log(enabledSettings);
+
+        let total = enabledSettings.reduce((acc, currentValue) => {
+            return acc + Number(currentValue);
+        }, 0);
+        totalSum += total;
+        console.log(totalSum);
+        document.getElementById('totalSum').textContent = total;
+    })
+    }); 
+}*/
+
+// Function to fetch data from the API
+async function fetchDataFromAPI() {
+    try {
+        const response = await fetch('https://jv5md3e0wj.execute-api.us-east-1.amazonaws.com/redisStage/redis');
+        const data = await response.json();
+        console.log(data);
+        return data;
+        
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+    }
+}
+
+// Function to set up checkboxes
+async function setupCheckboxes() {
+    // Fetch data from the API
+    const apiData = await fetchDataFromAPI();
+
+    // Check if data is available
+    if (!apiData) {
+        console.log("No data available from API");
+        return;
+    }else{
+        console.log("fetched");
+    }
+
+    let checkboxes = document.querySelectorAll("input[type=checkbox][name=settings]");
+    let enabledSettings = [];
+    let totalSum = 0;
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', async function() {
+            // If checkbox is checked, add relevant data from API to enabledSettings
+            if (checkbox.checked) {
+                const relevantData = apiData.find(item => item.id === checkbox.value); // assuming each item has an 'id'
+                if (relevantData) {
+                    enabledSettings.push(relevantData);
+                }
+            } else {
+                // Remove unchecked item from enabledSettings
+                enabledSettings = enabledSettings.filter(item => item.id !== checkbox.value);
+            }
+
+            // Calculate and display total
+            let total = enabledSettings.reduce((acc, item) => acc + Number(item.price), 0); // assuming items have a 'price' property
+            document.getElementById('totalSum').textContent = total;
+
+            console.log(enabledSettings);
+        });
+    });
+}
 
 
