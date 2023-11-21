@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            width: 800px;
+            margin: auto;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #eee;
+            padding: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #555;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #333;
+        }
+
+        .menu {
+            display: none;
+        }
+
+        .menu h2 {
+            color: #555;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu li {
+            background-color: #eee;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Menu</h1>
+
+        <div class="navbar">
+            <a href="#" onclick="showMenu('foodMenu')">Food</a>
+            <a href="#" onclick="showMenu('drinkMenu')">Drinks</a>
+            <a href="#" onclick="showMenu('dessertMenu')">Desserts</a>
+        </div>
+
+        <div class="menu" id="foodMenu">
+            <h2>Food Menu</h2>
+            <ul>
+                <li>Burger</li>
+                <li>Pasta</li>
+                <li>Pizza</li>
+            </ul>
+        </div>
+
+        <div class="menu" id="drinkMenu">
+            <h2>Drink Menu</h2>
+            <ul>
+                <li>Coffee</li>
+                <li>Tea</li>
+                <li>Soda</li>
+            </ul>
+        </div>
+
+        <div class="menu" id="dessertMenu">
+            <h2>Dessert Menu</h2>
+            <ul>
+                <li>Ice Cream</li>
+                <li>Cake</li>
+                <li>Cookie</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show the 'foodMenu' by default when the page loads
+            showMenu('foodMenu');
+        });
+
+        function showMenu(Id) {
+            const menus = document.querySelectorAll('.menu');
+            menus.forEach(menussss => {
+                menussss.style.display = 'none';
+            });
+
+            const selectedMenu = document.getElementById(Id);
+            if (selectedMenu) {
+                selectedMenu.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

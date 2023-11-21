@@ -1,20 +1,119 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>Test Page</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu and Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
-    <a href="https://ibb.co/r7qKNrr"
-      ><img
-        src="https://i.ibb.co/C14pDGG/IMG-1480.jpg"
-        alt="IMG-1480"
-        border="0"
-    /></a>
+        h1 {
+            text-align: center;
+        }
 
-    <a href="https://ibb.co/xqbXmxK"
-      ><img
-        src="https://i.ibb.co/1GN7sFY/IMG-1978.jpg"
-        alt="IMG-1978"
-        border="0"
-    /></a>
-  </body>
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .menu {
+            float: left;
+            width: 45%;
+            margin-right: 5%;
+        }
+
+        .cart {
+            float: left;
+            width: 45%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menu and Cart</h1>
+
+    <nav>
+        <a href="#" onclick="showMenu('Food')">Food</a>
+        <a href="#" onclick="showMenu('Drinks')">Drinks</a>
+        <a href="#" onclick="showMenu('Desserts')">Desserts</a>
+    </nav>
+
+    <div class="menu" id="menu-container">
+        <h2>Menu</h2>
+        <ul id="food-menu"></ul>
+        <ul id="drink-menu"></ul>
+        <ul id="dessert-menu"></ul>
+    </div>
+
+    <div class="cart">
+        <h2>Cart</h2>
+        <ul id="cart"></ul>
+    </div>
+
+    <script>
+        // Sample menu data
+        const foodMenu = ["Burger", "Pizza", "Salad"];
+        const drinkMenu = ["Soda", "Water", "Juice"];
+        const dessertMenu = ["Ice Cream", "Cake", "Cookies"];
+
+        // Display menu items
+        function displayMenu(menuType, items) {
+            const menuList = document.getElementById(`${menuType.toLowerCase()}-menu`);
+            menuList.innerHTML = "";
+            items.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                menuList.appendChild(listItem);
+            });
+        }
+
+        // Display items in the cart
+        function displayCart(cartItems) {
+            const cartList = document.getElementById("cart");
+            cartList.innerHTML = "";
+            cartItems.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                cartList.appendChild(listItem);
+            });
+        }
+
+        // Show menu based on category
+        function showMenu(category) {
+            const menuContainer = document.getElementById("menu-container");
+            if (category === "Food") {
+                displayMenu("Food", foodMenu);
+            } else if (category === "Drinks") {
+                displayMenu("Drinks", drinkMenu);
+            } else if (category === "Desserts") {
+                displayMenu("Desserts", dessertMenu);
+            }
+        }
+
+        // Sample cart data
+        const cart = ["Burger", "Soda", "Cake"];
+
+        // Initial display
+        showMenu('Food');
+        displayCart(cart);
+    </script>
+</body>
 </html>
