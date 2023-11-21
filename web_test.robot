@@ -4,14 +4,13 @@ Library    SeleniumLibrary
 *** Variables ***
 ${url}      http://127.0.0.1:5500/index.html
 ${browser}  chrome
-${delay}    2
-${EXPECT1}  Food2
-${EXPECT2}  Food9
-${EXPECT3}  Food1
+${EXPECT1}  Kebab
+${EXPECT2}  Orange juice
+${EXPECT3}  Cheese cake
 ${EXPECT4}  2
-${Expect5}  $500
+${Expect5}  $400
 
-@{expected_values}    Food2     Food3      Food9      Food1      Food4
+@{expected_values}    Kebab     Fried rice      Orange juice      Cheese cake      Oreo Ice cream
 *** Test Cases ***
 
 1.Open Browser
@@ -91,24 +90,3 @@ ${Expect5}  $500
 
 20.Close the Browser
     Close All Browsers
-
-    
-    
-
-
-
-
-    
-
-    
-
-
-    
-      
-
-   
-
-*** Keywords ***
-# Your other keywords, if any
-
-
