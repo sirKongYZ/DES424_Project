@@ -28,14 +28,32 @@
                 <span>0</span>
             </div>
         </header>
-        <div class="listProduct">
 
+        <div class="navbar">
+            <a href="#" onclick="showMenu('food',event)">Food</a>
+            <a href="#" onclick="showMenu('drink',event)">Drinks</a>
+            <a href="#" onclick="showMenu('dessert',event)">Desserts</a>
         </div>
+
+        <div class="listProduct" id="food">
+            
+        </div>
+
+        <div class="listProduct" id="drink">
+            
+        </div>
+
+        <div class="listProduct" id="dessert">
+            
+        </div>
+
+
     </div>
     <div class="cartTab">
         <h1>Your Order</h1>
+
         <div class="listCart">
-            
+        
         </div>
 
         <div class="btn">
@@ -46,5 +64,68 @@
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+        function showMenu(menuId, event) {
+        event.preventDefault();
+
+        console.log(event);
+
+        // Hide all menus
+        const menus = document.querySelectorAll('.listProduct');
+        menus.forEach(menu => {
+            menu.style.display = '';
+        });
+
+        const selectedMenu = document.getElementById(menuId);
+        if (selectedMenu) {
+            listProductHTML.innerHTML = '';
+            console.log(menuId);
+
+            products.forEach((product, index) => {
+                if (product.type == menuId) {
+
+                
+                let newProduct = document.createElement('div');
+                newProduct.dataset.id = product.id;
+                newProduct.classList.add('item1');
+                newProduct.innerHTML =
+                    `<img src="${product.image}" alt="">
+                    <h2>${product.name}</h2>
+                    <div class="price">$${product.price}</div>
+                    <button class="addCart">Add To Cart</button>`;
+                    listProductHTML.appendChild(newProduct);
+
+                setTimeout(() => {
+                    newProduct.classList.add('pop-up');
+                }, 100 * index);
+            }
+            });
+
+            listProductHTML.style.display = 'grid';
+                   
+        }
+
+        
+
+        // Remove 'active' class from all menu links
+        var menuLinks = document.querySelectorAll('.navbar a');
+        menuLinks.forEach(function (link) {
+            link.classList.remove('active');
+        });
+
+        // Add 'active' class to the clicked menu link
+        event.target.classList.add('active');
+    }
+    
+
+    </script>
+
+   
+
+    
+    
+
+    
 </body>
 </html>
