@@ -7,8 +7,11 @@ let closeCart = document.querySelector('.close');
 let clearLocal = document.querySelector('.clearLocal');
 let checkoutCart = document.querySelector('.checkOut');
 let products = [];
+let drinks = [];
+let desserts = [];
 let cart = [];
 let cartJSON = {};
+let list1 = [];
 
 
 iconCart.addEventListener('click', () => {
@@ -18,100 +21,142 @@ closeCart.addEventListener('click', () => {
     body.classList.toggle('showCart');
 })
 
-    const addDataToHTML = () => {
-    // remove datas default from HTML
+    const addDataToHTML = () => {}
+    
+    //     // add new datas
+    //     if (products.length > 0) {
+    //         products.forEach((product, index) => {
+    //             let newProduct = document.createElement('div');
+    //             newProduct.dataset.id = product.id;
+    //             newProduct.classList.add('item1');
+    //             newProduct.innerHTML =
+    //                 `<img src="${product.image}" alt="">
+    //                 <h2>${product.name}</h2>
+    //                 <div class="price">$${product.price}</div>
+    //                 <button class="addCart">Add To Cart</button>`;
+    //             listProductHTML.appendChild(newProduct);
+    
+    //             // Add pop-up animation with a delay based on the index
+    //             setTimeout(() => {
+    //                 newProduct.classList.add('pop-up');
+    //             }, 100 * index);
 
-        // add new datas
-        if(products.length > 0) // if has data
-        {
-            products.forEach(product => {
-                let newProduct = document.createElement('div');
-                newProduct.dataset.id = product.id;
-                newProduct.classList.add('item');
-                newProduct.innerHTML = 
-                `<img src="${product.image}" alt="" class = "rounded">
-                <h2>${product.name}</h2>
-                <div class="price">$${product.price}</div>
-                <div class="price">${product.type}</div>
-                <button class="addCart">Add To Cart</button>`;
-                listProductHTML.appendChild(newProduct);
-            });
-        }
-    }
+                
+    //         });
+    //     }
+    // }
+
+    
+    
     listProductHTML.addEventListener('click', (event) => {
+        console.log(listProductHTML);
         let positionClick = event.target;
         if(positionClick.classList.contains('addCart')){
             let id_product = positionClick.parentElement.dataset.id;
+            console.log(id_product);
             addToCart(id_product);
+            
         }
     })
+    
 const addToCart = (product_id) => {
     console.log(localStorage.getItem('selectedOption'));
     if(localStorage.getItem('selectedOption') != null && localStorage.getItem('selectedOption') != "none"){
         let positionThisProductInCart = cart.findIndex((value) => value.product_id == product_id);
+        
         if(cart.length <= 0){
             cart = [{
+                "table_id" : localStorage.getItem('selectedOption'),
                 product_id: product_id,
                 "name": getProductName(product_id),
-                quantity: 1,
-                "type": getType(product_id)
+                quantity: 1
             }];
-            
         }else if(positionThisProductInCart < 0){
             cart.push({
+                "table_id" : localStorage.getItem('selectedOption'),
                 product_id: product_id,
                 "name": getProductName(product_id),
-                quantity: 1,
-                "type": getType(product_id)
+                quantity: 1
             });
-        }else{
-            cart[positionThisProductInCart].quantity = cart[positionThisProductInCart].quantity + 1;
         }
-        console.log("cart: " + JSON.stringify(cart));
+        else{
+            cart[positionThisProductInCart].quantity = cart[positionThisProductInCart].quantity +1 ;
+        }
+        console.log(cart);
         addCartToHTML();
+        
         addCartToMemory();
         console.log(localStorage.getItem('cart'));
+        
     }else{
         alert("please enter table number first");
     }
+
     
     
 }
 const addCartToMemory = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+const getProductInfoById = (productId) => {
+    const positionProduct = products.findIndex((value) => value.id == productId);
+    return positionProduct >= 0 ? products[positionProduct] : null;
+};
+
 const addCartToHTML = () => {
     listCartHTML.innerHTML = '';
     let totalQuantity = 0;
-    if(cart.length > 0){
+
+    if (cart.length > 0) {
         cart.forEach(item => {
-            totalQuantity = totalQuantity +  item.quantity;
+            totalQuantity += item.quantity;
             let newItem = document.createElement('div');
             newItem.classList.add('item');
             newItem.dataset.id = item.product_id;
 
-            let positionProduct = products.findIndex((value) => value.id == item.product_id);
-            let info = products[positionProduct];
-            listCartHTML.appendChild(newItem);
-            newItem.innerHTML = `
-            <div class="image">
-                    <img src="${info.image}">
-                </div>
-                <div class="name">
-                ${info.name}
-                </div>
-                <div class="totalPrice">$${info.price * item.quantity}</div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>${item.quantity}</span>
-                    <span class="plus">></span>
-                </div>
-            `;
-        })
+            console.log(cart);
+
+            // Use the helper function to get product information
+            let info = getProductInfoById(item.product_id);
+
+            // Log relevant information
+            console.log('Item ID:', item.product_id);
+            console.log('Position in Products:', products.indexOf(info));
+            
+            
+
+
+            if (info) {
+                // Display the item in the cart only if product information is found
+                console.log('Products Array:', info.image);
+
+                
+
+                listCartHTML.appendChild(newItem);
+                newItem.innerHTML = `
+                    <div class="image">
+                        <img src="${info.image}">
+                    </div>
+                    <div class="name">
+                        ${info.name}
+                    </div>
+                    <div class="totalPrice">$${info.price * item.quantity}</div>
+                    <div class="quantity">
+                        <span class="minus"><</span>
+                        <span>${item.quantity}</span>
+                        <span class="plus">></span>
+                    </div>
+                `;
+            }
+            console.log(listCartHTML);
+
+        });
     }
     iconCartSpan.innerText = totalQuantity;
-    
-}
+};
+
+// Rest of your code remains unchanged
+
 
 clearLocal.addEventListener('click', (event) => {
     localStorage.clear();
@@ -128,6 +173,8 @@ listCartHTML.addEventListener('click', (event) => {
         changeQuantityCart(product_id, type);
     }
 })
+
+
 const changeQuantityCart = (product_id, type) => {
     let positionItemInCart = cart.findIndex((value) => value.product_id == product_id);
     if(positionItemInCart >= 0){
@@ -168,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const selectedValue = dropdown.value;
             // Store the selected option in localStorage
             localStorage.setItem('selectedOption', selectedValue);
-            console.log(localStorage.getItem('selectedOption'));
+            console.log(selectedValue);
         }
         
     });
@@ -183,24 +230,17 @@ checkoutCart.addEventListener('click', (event) => {
     console.log(localStorage.getItem('cart'));
 
     console.log("checkoutCart event triggered");
-    const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/clearData/redis";
+    const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/postOrder/redis";
 
     // Create a JSON object with the user input
-    const str = localStorage.getItem('selectedOption');
-    const intValue = Number(str);
+
     // Make a POST request to the Lambda function
-    var data = {
-        "table_id" : intValue,
-        "jsondata" : localStorage.getItem('cart')
-    };
-    console.log(JSON.stringify(data));
-    console.log(localStorage.getItem('cart'));
     fetch(lambdaUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: (localStorage.getItem('cart')),
     })
     .then(response => response.json())
     .then(responseData => {
@@ -213,8 +253,8 @@ checkoutCart.addEventListener('click', (event) => {
         document.getElementById("result").textContent = "Error occurred.";
     });
     localStorage.clear();
-    alert(JSON.stringify(data));
-    //setTimeout(location.reload.bind(location), 1000);
+    alert("Order has been sent");
+    setTimeout(location.reload.bind(location), 1000);
     
     
 })
@@ -224,8 +264,10 @@ const initApp = () => {
     fetch('products.json')
     .then(response => response.json())
     .then(data => {
+
+
         products = data;
-        addDataToHTML();
+        // addDataToHTML();
 
         // get data cart from memory
         if(localStorage.getItem('cart')){
@@ -239,10 +281,24 @@ const getProductName = (product_id) => {
     return product ? product.name : '';
 };
 
-const getType = (product_id) => {
-    const product = products.find((item) => item.id == product_id);
-    return product ? product.type : '';
-};
+function updateDateTime() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1; // Months are zero-based, so add 1
+    const day = now.getDate();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    const datetimeString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    // Update the content of the 'datetime' paragraph element
+    const datetimeElement = document.getElementById('datetime');
+    datetimeElement.textContent = datetimeString;
+}
+
+
 
 // Call the function to update the date and time immediately when the page loads
 //updateDateTime();

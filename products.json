@@ -56,5 +56,12 @@
         "image": "image/8.png",
         "type": "food"
     }
+    ,{
+        "id": 9,
+        "name":" Food9",
+        "price": 200,
+        "image": "image/8.png",
+        "type": "drink"
+    }
 
 ]
