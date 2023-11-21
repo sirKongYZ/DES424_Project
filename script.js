@@ -29,9 +29,10 @@ closeCart.addEventListener('click', () => {
                 newProduct.dataset.id = product.id;
                 newProduct.classList.add('item');
                 newProduct.innerHTML = 
-                `<img src="${product.image}" alt="">
+                `<img src="${product.image}" alt="" class = "rounded">
                 <h2>${product.name}</h2>
                 <div class="price">$${product.price}</div>
+                <div class="price">${product.type}</div>
                 <button class="addCart">Add To Cart</button>`;
                 listProductHTML.appendChild(newProduct);
             });
@@ -53,14 +54,16 @@ const addToCart = (product_id) => {
                 "table_id" : localStorage.getItem('selectedOption'),
                 product_id: product_id,
                 "name": getProductName(product_id),
-                quantity: 1
+                quantity: 1,
+                "type": getType(product_id)
             }];
         }else if(positionThisProductInCart < 0){
             cart.push({
                 "table_id" : localStorage.getItem('selectedOption'),
                 product_id: product_id,
                 "name": getProductName(product_id),
-                quantity: 1
+                quantity: 1,
+                "type": getType(product_id)
             });
         }else{
             cart[positionThisProductInCart].quantity = cart[positionThisProductInCart].quantity + 1;
@@ -180,7 +183,7 @@ checkoutCart.addEventListener('click', (event) => {
     console.log(localStorage.getItem('cart'));
 
     console.log("checkoutCart event triggered");
-    const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/postOrder/redis";
+    const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/clearData/redis";
 
     // Create a JSON object with the user input
 
@@ -229,22 +232,10 @@ const getProductName = (product_id) => {
     return product ? product.name : '';
 };
 
-function updateDateTime() {
-    const now = new Date();
-
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1; // Months are zero-based, so add 1
-    const day = now.getDate();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    const datetimeString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-    // Update the content of the 'datetime' paragraph element
-    const datetimeElement = document.getElementById('datetime');
-    datetimeElement.textContent = datetimeString;
-}
+const getType = (product_id) => {
+    const product = products.find((item) => item.id == product_id);
+    return product ? product.type : '';
+};
 
 // Call the function to update the date and time immediately when the page loads
 //updateDateTime();
