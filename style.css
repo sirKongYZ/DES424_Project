@@ -139,6 +139,17 @@ body.showCart .container{
 .listCart::-webkit-scrollbar{
   width: 0;
 }
+
+table { 
+  border-collapse: collapse;
+}
+
+td {
+padding: 20px; 
+border: 1px solid black; 
+text-align: center;
+}
+
 @media only screen and (max-width: 992px) {
   .listProduct{
       grid-template-columns: repeat(3, 1fr);

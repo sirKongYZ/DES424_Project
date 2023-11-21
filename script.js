@@ -51,15 +51,14 @@ const addToCart = (product_id) => {
         let positionThisProductInCart = cart.findIndex((value) => value.product_id == product_id);
         if(cart.length <= 0){
             cart = [{
-                "table_id" : localStorage.getItem('selectedOption'),
                 product_id: product_id,
                 "name": getProductName(product_id),
                 quantity: 1,
                 "type": getType(product_id)
             }];
+            
         }else if(positionThisProductInCart < 0){
             cart.push({
-                "table_id" : localStorage.getItem('selectedOption'),
                 product_id: product_id,
                 "name": getProductName(product_id),
                 quantity: 1,
@@ -68,6 +67,7 @@ const addToCart = (product_id) => {
         }else{
             cart[positionThisProductInCart].quantity = cart[positionThisProductInCart].quantity + 1;
         }
+        console.log("cart: " + JSON.stringify(cart));
         addCartToHTML();
         addCartToMemory();
         console.log(localStorage.getItem('cart'));
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const selectedValue = dropdown.value;
             // Store the selected option in localStorage
             localStorage.setItem('selectedOption', selectedValue);
-            console.log(selectedValue);
+            console.log(localStorage.getItem('selectedOption'));
         }
         
     });
@@ -186,14 +186,21 @@ checkoutCart.addEventListener('click', (event) => {
     const lambdaUrl = "https://avxxvkbiea.execute-api.us-east-1.amazonaws.com/clearData/redis";
 
     // Create a JSON object with the user input
-
+    const str = localStorage.getItem('selectedOption');
+    const intValue = Number(str);
     // Make a POST request to the Lambda function
+    var data = {
+        "table_id" : intValue,
+        "jsondata" : localStorage.getItem('cart')
+    };
+    console.log(JSON.stringify(data));
+    console.log(localStorage.getItem('cart'));
     fetch(lambdaUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: (localStorage.getItem('cart')),
+        body: JSON.stringify(data),
     })
     .then(response => response.json())
     .then(responseData => {
@@ -206,8 +213,8 @@ checkoutCart.addEventListener('click', (event) => {
         document.getElementById("result").textContent = "Error occurred.";
     });
     localStorage.clear();
-    alert("Order has been sent");
-    setTimeout(location.reload.bind(location), 1000);
+    alert(JSON.stringify(data));
+    //setTimeout(location.reload.bind(location), 1000);
     
     
 })
