@@ -24,7 +24,7 @@ async function fetchDataFood() {
     console.log(body.transaction_id);
   })
   document.getElementById('tbody').innerHTML = tab;
-  //setTimeout(fetchDataDessert, 3000);
+  setTimeout(fetchDataFood, 4000);
 } 
 
 
@@ -54,7 +54,7 @@ async function fetchDataDessert() {
     console.log(body.transaction_id);
   })
   document.getElementById('tbody').innerHTML = tab;
-  //setTimeout(fetchDataDessert, 3000);
+  setTimeout(fetchDataDessert, 5000);
 }
 
 async function fetchDataDrink() {
@@ -83,7 +83,7 @@ async function fetchDataDrink() {
     console.log(body.transaction_id);
   })
   document.getElementById('tbody').innerHTML = tab;
-  //setTimeout(fetchDataDessert, 3000);
+  setTimeout(fetchDataDrink, 3000);
 }
 
 async function fetchDataCashier() {
@@ -152,7 +152,7 @@ document.addEventListener('click', (event) => {
         //document.getElementById("result").textContent = "Error occurred.";
     });
 
-    setTimeout(location.reload.bind(location), 1000);
+    setTimeout(location.reload.bind(location), 2000);
     } else {
       console.log("Canceled");
     }
@@ -202,6 +202,7 @@ async function fetchDataCashier() {
 
   document.getElementById('tbody').innerHTML = tab;
   setupCheckboxes(); // Call this after the table is populated
+  setTimeout(fetchDataCashier, 3000);
 }
 
 
@@ -234,7 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   button.addEventListener('click', function() {
     console.log("clicked");
-      sendDataToLambda();
+    if (confirm(`Check out?`)) { 
+      sendDataToLambda()
+    }
+      
   });
 });
 
@@ -258,6 +262,8 @@ async function sendDataToLambda() {
 
       console.log('Response from Lambda:', responseData);
       // Handle the response data as needed
+      setTimeout(location.reload.bind(location), 2000);
+
   } catch (error) {
       console.error('Error sending data to Lambda:', error);
   }

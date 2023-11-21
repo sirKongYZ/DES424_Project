@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload = "showMenu('food', event)" >
@@ -91,7 +91,7 @@
                 newProduct.innerHTML =
                     `<img src="${product.image}" alt="">
                     <h2>${product.name}</h2>
-                    <div class="price">$${product.price}</div>
+                    <div class="price">฿${product.price}</div>
                     <button class="addCart">Add To Cart</button>`;
                     listProductHTML.appendChild(newProduct);
 

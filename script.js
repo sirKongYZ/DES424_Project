@@ -264,7 +264,7 @@ checkoutCart.addEventListener('click', (event) => {
     });
     localStorage.clear();
     alert("Order has been sent");
-    //setTimeout(location.reload.bind(location), 1000);
+    setTimeout(location.reload.bind(location), 1000);
 
     
     
