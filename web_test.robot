@@ -10,7 +10,7 @@ ${EXPECT3}  Cheese cake
 ${EXPECT4}  2
 ${Expect5}  $400
 
-@{expected_values}    Kebab     Fried rice      Orange juice      Cheese cake      Oreo Ice cream
+@{expected_values}    Kebab     Fired rice      Orange juice      Cheese cake      Oreo Ice cream
 *** Test Cases ***
 
 1.Open Browser
