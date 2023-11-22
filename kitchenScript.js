@@ -202,8 +202,8 @@ async function fetchDataCashier() {
 
   document.getElementById('tbody').innerHTML = tab;
   setupCheckboxes(); // Call this after the table is populated
-  setTimeout(fetchDataCashier, 3000);
-}
+//   setTimeout(fetchDataCashier, 3000);
+ }
 
 
 function setupCheckboxes() {
