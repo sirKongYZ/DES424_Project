@@ -24,7 +24,7 @@ async function fetchDataFood() {
     console.log(body.transaction_id);
   })
   document.getElementById('tbody').innerHTML = tab;
-  setTimeout(fetchDataFood, 4000);
+  //setTimeout(fetchDataFood, 4000);
 } 
 
 
@@ -54,7 +54,7 @@ async function fetchDataDessert() {
     console.log(body.transaction_id);
   })
   document.getElementById('tbody').innerHTML = tab;
-  setTimeout(fetchDataDessert, 5000);
+  //setTimeout(fetchDataDessert, 5000);
 }
 
 async function fetchDataDrink() {
@@ -83,7 +83,7 @@ async function fetchDataDrink() {
     console.log(body.transaction_id);
   })
   document.getElementById('tbody').innerHTML = tab;
-  setTimeout(fetchDataDrink, 3000);
+  //setTimeout(fetchDataDrink, 3000);
 }
 
 // async function fetchDataCashier() {
