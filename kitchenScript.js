@@ -86,33 +86,33 @@ async function fetchDataDrink() {
   setTimeout(fetchDataDrink, 3000);
 }
 
-async function fetchDataCashier() {
-  const data = await fetch('https://jv5md3e0wj.execute-api.us-east-1.amazonaws.com/redisStage/redis');
-  const records = await data.json();
+// async function fetchDataCashier() {
+//   const data = await fetch('https://jv5md3e0wj.execute-api.us-east-1.amazonaws.com/redisStage/redis');
+//   const records = await data.json();
 
-  console.log("fetched");
-  let tab = '';
-  records.body.forEach(function(body) {
-  var total = 0;
-  if(body.status == "completed"){
-      tab += `<tr>
-      <td>${body.order_id}</td>
-      <td>${body.table_id}</td>
-      <td>${body.name}</td>
-      <td>${body.quantity}</td>
-      <td>${body.time}</td>
-      <td>${body.price}</td>
-      <td><input type="checkbox" id="vehicle1" name="settings" value= ${body.price}></td>`
-      document.getElementById('totalSum').textContent = setupCheckboxes();
+//   console.log("fetched");
+//   let tab = '';
+//   records.body.forEach(function(body) {
+//   var total = 0;
+//   if(body.status == "completed"){
+//       tab += `<tr>
+//       <td>${body.order_id}</td>
+//       <td>${body.table_id}</td>
+//       <td>${body.name}</td>
+//       <td>${body.quantity}</td>
+//       <td>${body.time}</td>
+//       <td>${body.price}</td>
+//       <td><input type="checkbox" id="vehicle1" name="settings" value= ${body.price}></td>`
+//       document.getElementById('totalSum').textContent = setupCheckboxes();
       
-  }
-  })
-  document.getElementById('tbody').innerHTML = tab;
-  console.log("total: " + setupCheckboxes());
+//   }
+//   })
+//   document.getElementById('tbody').innerHTML = tab;
+//   console.log("total: " + setupCheckboxes());
   
 
 
-}
+// }
 
 
 
