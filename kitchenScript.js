@@ -133,7 +133,7 @@ document.addEventListener('click', (event) => {
         transaction_id: transactionId
       };
       
-      // Send checkData to the Lambda function
+      // Send checkData to the Lambda functions
       fetch(lambdaUrl, {
         method: "POST",
         headers: {
