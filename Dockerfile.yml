@@ -1,0 +1,7 @@
+FROM nginx
+LABEL MAINTAINER "Your name"
+ARG MY_NAME=change my name
+ARG MY_ID=change my id
+RUN apt-get update && apt-get install -y git sed
+RUN mkdir /mycode && cd /mycode && git clone https://github.com/sirKongYZ/DES424_Project.git
+RUN cp -r /mycode/DES424_Project /usr/share/nginx/html/mygitweb
